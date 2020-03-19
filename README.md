@@ -9,7 +9,7 @@ sequelize migration:create --name {migration_name}
 
 ### Run migration
 ```bash
-sequelize migration:create --name {migration_name}
+sequelize db:migrate
 ```
 
 ## Running app
