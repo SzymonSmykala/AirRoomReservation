@@ -13,7 +13,6 @@ router.get('/:roomId', async (req, res) => {
     }
 });
 
-
 router.get('/', async (req, res) =>{
     try{
         const rooms = await Room.find();
@@ -50,15 +49,13 @@ router.delete('/roomId', async (req, res) => {
 
 router.patch('/', async (req, res) => {
 
-    console.log("Patching");
     try{
         const room = new Room({
             name: req.body.name,
             id: req.body.id,
             _id: req.body._id
         });
-        console.log(room);
-        await Room.updateOne(room);
+        const updatedRoom = await Room.updateOne(room);
 
        res.json(updatedRoom);
     }catch (error) {
