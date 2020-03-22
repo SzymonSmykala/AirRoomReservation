@@ -32,7 +32,6 @@ router.post('/', async (req, res) => {
 
 });
 
-
 router.delete('/:roomId', async (req, res) => {
     try{
         const rooms = await Room.findByIdAndRemove(req.params.roomId);
