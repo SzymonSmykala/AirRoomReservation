@@ -6,6 +6,10 @@ const RoomSchema = mongoose.Schema({
         required: true
     },
     photoUrl: String,
+    costPerDay: {
+        type: Number,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Rooms', RoomSchema);

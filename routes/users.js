@@ -9,7 +9,7 @@ router.post('/', async (request, response) => {
         request.body.password = Bcrypt.hashSync(request.body.password, 10);
         const user = new User(request.body);
         const result = await user.save();
-        response.send(result);
+        response.send({message: "Success"});
     } catch (error) {
         console.error(error);
         response.status(500).send(error);

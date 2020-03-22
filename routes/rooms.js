@@ -51,7 +51,6 @@ router.patch('/', async (req, res) => {
     try{
         const room = new Room({
             name: req.body.name,
-            id: req.body.id,
             _id: req.body._id
         });
         const updatedRoom = await Room.updateOne(room);

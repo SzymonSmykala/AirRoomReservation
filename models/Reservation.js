@@ -9,7 +9,8 @@ const Reservation = new mongoose.Schema({
         type: Date,
         required: true
     },
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
+    room: {type: mongoose.Schema.Types.ObjectId, ref: 'Room', required: true}
 
 });
 
