@@ -48,4 +48,15 @@ router.get('/:userId', async (req, res) => {
     }
 });
 
+router.delete('/:reservationId', async (req, res) => {
+    try{
+        const reservation = await Reservation.findByIdAndRemove(req.params.reservationId);
+        res.json(reservation);
+    }catch (error) {
+        console.log(error);
+        res.json(error);
+    }
+});
+
+
 module.exports = router;

@@ -22,11 +22,8 @@ router.get('/', async (req, res) =>{
 });
 
 router.post('/', async (req, res) => {
-   const room = new Room({
-        name: req.body.name,
-        id: req.body.id
-   });
     try {
+        const room = new Room(req.body);
         const savedRoom = await room.save();
         res.json(savedRoom);
     }catch (error) {
@@ -36,9 +33,9 @@ router.post('/', async (req, res) => {
 });
 
 
-router.delete('/roomId', async (req, res) => {
+router.delete('/:roomId', async (req, res) => {
     try{
-        const rooms = await Room.removeById(req.params.roomId);
+        const rooms = await Room.findByIdAndRemove(req.params.roomId);
         res.json(rooms);
     }catch (error) {
         res.json(error);
