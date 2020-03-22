@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -18,8 +19,8 @@ app.use('/rooms', roomsRouter);
 require('dotenv/config');
 
 
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }).
-catch(error => console.log(error));
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true })
+  .catch(error => console.log(error));
 
 app.use(logger('dev'));
 app.use(express.json());
