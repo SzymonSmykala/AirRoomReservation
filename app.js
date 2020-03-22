@@ -16,9 +16,6 @@ app.use(bodyParser.json());
 app.use('/rooms', roomsRouter);
 require('dotenv/config')
 
-// mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () =>
-// mongoose.connect("dupa", { useNewUrlParser: true }, () =>
-//     console.log("Connected to db!"));
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }).
 catch(error => console.log(error));
@@ -28,6 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 
 module.exports = app;
