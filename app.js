@@ -4,11 +4,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var roomsRouter = require('./routes/rooms');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const roomsRouter = require('./routes/rooms');
+const reservationsRouter = require('./routes/reservations');
 
-var app = express();
+const app = express();
 
 const bodyParser = require('body-parser');
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/reservations', reservationsRouter);
 
 
 module.exports = app;
