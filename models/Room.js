@@ -5,8 +5,7 @@ const RoomSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    id: Number,
-    Price: Number
+    photoUrl: String,
 });
 
 module.exports = mongoose.model('Rooms', RoomSchema);

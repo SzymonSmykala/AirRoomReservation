@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use('/rooms', roomsRouter);
-require('dotenv/config')
+require('dotenv/config');
 
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }).
