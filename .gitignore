@@ -102,3 +102,19 @@ dist
 
 # TernJS port file
 .tern-port
+client/.idea
+server/.idea
+client/.idea/.gitignore
+client/.idea/client.iml
+client/.idea/misc.xml
+client/.idea/modules.xml
+client/.idea/vcs.xml
+client/.idea/inspectionProfiles/Project_Default.xml
+server/.idea/.gitignore
+server/.idea/misc.xml
+server/.idea/modules.xml
+server/.idea/server.iml
+server/.idea/vcs.xml
+server/.idea/sonarlint/issuestore/3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
+server/.idea/sonarlint/issuestore/4/a/4a68969ef8e858229267b842dedf42ab5dde4d50
+server/.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
