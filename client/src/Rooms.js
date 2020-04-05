@@ -19,7 +19,7 @@ export class Rooms extends React.Component {
     render() {
 
         const tableHeader =  <tr>
-            <th>#</th>
+            <th>Photo</th>
             <th>Name</th>
             <th>Cost per day</th>
         </tr>
