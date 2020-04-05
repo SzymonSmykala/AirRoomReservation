@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import API_ENDPOINT from "./Constants";
+import {Rooms} from './Rooms';
 
 class App extends React.Component {
   url = API_ENDPOINT;
@@ -40,6 +41,7 @@ class App extends React.Component {
             </a>
           </header>
           <p>{this.state.apiResponse}</p>
+          <Rooms/>
         </div>
     );
   }
