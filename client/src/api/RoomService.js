@@ -5,6 +5,7 @@ export class Room {
     __v;
     name;
     costPerDay;
+    photoUrl;
 }
 
 export class RoomService {

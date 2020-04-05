@@ -1,5 +1,6 @@
 import React from 'react';
-import {RoomService} from './api/RoomService'
+import {RoomService} from './api/RoomService';
+import { Table } from 'reactstrap';
 
 export class Rooms extends React.Component {
 
@@ -17,17 +18,27 @@ export class Rooms extends React.Component {
 
     render() {
 
+        const tableHeader =  <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Cost per day</th>
+        </tr>
+
         const rooms = this.state.rooms.map(room => (
-            <div>
-               <h3>{room.name}</h3>
-                <p>{room.costPerDay}</p>
-            </div>
+                <tr>
+                    <th scope="row"><img src={room.photoUrl} width="100" height="100"/></th>
+                    <td>{room.name}</td>
+                    <td>{room.costPerDay}</td>
+                </tr>
 
         ));
-        return <div>
-            {rooms}
-
-        </div>
+       return <Table>
+            <thead>
+                {tableHeader}
+            </thead>
+            <tbody>
+                {rooms}
+            </tbody>
+        </Table>
     }
-
 }
