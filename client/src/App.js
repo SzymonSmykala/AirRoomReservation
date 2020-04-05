@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import API_ENDPOINT from "./Constants";
+import {Rooms} from './Rooms';
+import NavbarHeader from './Untilities/NavbarHeader'
 
 class App extends React.Component {
   url = API_ENDPOINT;
@@ -11,36 +13,15 @@ class App extends React.Component {
     this.state = {apiResponse: ""}
   }
 
-  callApi(){
-
-    fetch( this.url + "/reservations")
-        .then(res => res.text())
-        .then(res => this.setState({apiResponse: res}))
-  }
-
-  componentDidMount(){
-    this.callApi();
-  }
 
   render() {
     return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-          <p>{this.state.apiResponse}</p>
-        </div>
+     <div>
+     <NavbarHeader/>
+     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', marginLeft: '10vh', marginRight: '10vh'}}>
+          <Rooms/>
+     </div>
+     </div>
     );
   }
 
