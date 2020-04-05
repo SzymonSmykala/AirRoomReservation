@@ -1,9 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import API_ENDPOINT from "./Constants";
 
 class App extends React.Component {
+  url = API_ENDPOINT;
 
   constructor(props){
     super(props);
@@ -11,7 +12,8 @@ class App extends React.Component {
   }
 
   callApi(){
-    fetch("http://localhost:3000/reservations")
+
+    fetch( this.url + "/reservations")
         .then(res => res.text())
         .then(res => this.setState({apiResponse: res}))
   }
