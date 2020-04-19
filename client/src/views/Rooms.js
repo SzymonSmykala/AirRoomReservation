@@ -1,5 +1,5 @@
 import React from 'react';
-import {RoomService} from './api/RoomService';
+import {RoomService} from '../api/RoomService';
 import { Table } from 'reactstrap';
 
 export class Rooms extends React.Component {

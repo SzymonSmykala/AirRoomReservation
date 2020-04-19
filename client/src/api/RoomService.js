@@ -10,11 +10,19 @@ export class Room {
 
 export class RoomService {
 
+
     async fetchRoomsAsync() : Array<Room>{
-        let books = await fetch(API_ENDPOINT + "/rooms");
-        let booksObjects = JSON.parse(await books.text());
-        console.log(booksObjects);
-        return booksObjects;
+        let rooms = await fetch(API_ENDPOINT + "/rooms");
+        let roomsObjects = JSON.parse(await rooms.text());
+        console.log(roomsObjects);
+        return roomsObjects;
     }
-    
+
+    async fetchRoomByIdAsync(roomId): Room {
+        let room = await fetch(API_ENDPOINT + "/rooms/" + roomId);
+        let roomObject = JSON.parse(await room.text());
+        console.log("Fetched: " + roomObject.name);
+        return roomObject;
+    }
+
 }
