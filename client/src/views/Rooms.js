@@ -1,6 +1,7 @@
 import React from 'react';
 import {RoomService} from '../api/RoomService';
 import { Table } from 'reactstrap';
+import {Link} from "react-router-dom";
 
 export class Rooms extends React.Component {
 
@@ -13,7 +14,8 @@ export class Rooms extends React.Component {
     }
 
     componentDidMount() {
-        this.roomsService.fetchRoomsAsync().then(result => this.setState({rooms: result}));
+        this.roomsService.fetchRoomsAsync().then(result => this.setState({rooms: result}), result => {console.log(result)});
+
     }
 
     render() {
@@ -27,7 +29,7 @@ export class Rooms extends React.Component {
         const rooms = this.state.rooms.map(room => (
                 <tr>
                     <th scope="row"><img src={room.photoUrl} width="100" height="100"/></th>
-                    <td>{room.name}</td>
+                    <td><Link to={'/rooms/' + room._id }>{room.name} </Link></td>
                     <td>{room.costPerDay}</td>
                 </tr>
 
