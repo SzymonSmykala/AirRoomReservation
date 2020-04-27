@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import API_ENDPOINT from "./Constants";
 import {Rooms} from './views/Rooms';

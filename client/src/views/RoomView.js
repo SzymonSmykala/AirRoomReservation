@@ -31,13 +31,13 @@ export class RoomView extends React.Component {
     handleChange = (date) =>  {
         this.setState({
             startDate: date,
-        }, function() { console.log("setState completed", this.state); this.updateCost() });
+        }, function() { this.updateCost() });
     };
 
     handleEndDateChange = (date) => {
         this.setState({
             endDate: date
-        }, this.updateCost());
+        }, function() { this.updateCost() });
     };
 
     updateCost = () => {
@@ -58,7 +58,7 @@ export class RoomView extends React.Component {
 
         return <div>
             <h1>Make reservation on {room.name}</h1>
-            <th scope="row"><img src={room.photoUrl} width="300" height="300"/></th>
+            <th scope="row"><img src={room.photoUrl} width="300" height="300" alt={room.name}/></th>
             <h2>From</h2>
             <DatePicker selected={this.state.startDate} onChange={date => this.handleChange(date)} />
             <h2>To</h2>
