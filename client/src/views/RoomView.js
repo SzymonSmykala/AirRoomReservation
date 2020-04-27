@@ -52,10 +52,8 @@ export class RoomView extends React.Component {
         this.setState({cost: currentCost});
     };
 
-
     render() {
         const room = this.state.room;
-
         return <div>
             <h1>Make reservation on {room.name}</h1>
             <th scope="row"><img src={room.photoUrl} width="300" height="300" alt={room.name}/></th>
