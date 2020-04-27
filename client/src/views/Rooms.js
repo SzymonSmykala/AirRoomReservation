@@ -15,7 +15,6 @@ export class Rooms extends React.Component {
 
     componentDidMount() {
         this.roomsService.fetchRoomsAsync().then(result => this.setState({rooms: result}), result => {console.log(result)});
-
     }
 
     render() {

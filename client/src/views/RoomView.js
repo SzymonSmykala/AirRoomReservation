@@ -31,7 +31,7 @@ export class RoomView extends React.Component {
     handleChange = (date) =>  {
         this.setState({
             startDate: date,
-        },  this.updateCost());
+        }, function() { console.log("setState completed", this.state); this.updateCost() });
     };
 
     handleEndDateChange = (date) => {
@@ -64,7 +64,7 @@ export class RoomView extends React.Component {
             <h2>To</h2>
             <DatePicker selected={this.state.endDate} onChange={date => this.handleEndDateChange(date)} />
             <h2>Cost: </h2>
-            <h2>{this.state.cost}</h2>d
+            <h2>{this.state.cost}</h2>
             <Button color="primary" onClick={() => this.handleSubmit()}>Submit</Button>{' '}
         </div>
     }
