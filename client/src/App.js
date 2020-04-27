@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import API_ENDPOINT from "./Constants";
-import {Rooms} from './Rooms';
+import {Rooms} from './views/Rooms';
 import NavbarHeader from './Untilities/NavbarHeader'
 
 class App extends React.Component {

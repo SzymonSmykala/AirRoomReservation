@@ -4,11 +4,21 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {BrowserRouter, Route} from 'react-router-dom';
+import {RoomView} from "./views/RoomView";
+
+
+const routing = (
+    <BrowserRouter>
+        <div>
+            <Route exact path="/rooms/:id" component={RoomView}/>
+            <Route exact path="/" component={App}/>
+        </div>
+    </BrowserRouter>
+);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+ routing,
   document.getElementById('root')
 );
 
