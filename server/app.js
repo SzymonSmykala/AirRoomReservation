@@ -37,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/reservations', reservationsRouter);
+let secureRoute = require('./routes/secure-routes')
+app.use('/user', passport.authenticate('jwt', { session : false }), secureRoute);
 
 
 module.exports = app;
