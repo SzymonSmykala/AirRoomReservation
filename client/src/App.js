@@ -3,6 +3,9 @@ import './App.css';
 import API_ENDPOINT from "./Constants";
 import {Rooms} from './views/Rooms';
 import NavbarHeader from './Untilities/NavbarHeader'
+import {Router} from "react-router-dom";
+import BaseRouter from "./routes";
+import {RegisterView} from "./views/RegisterView";
 
 class App extends React.Component {
   url = API_ENDPOINT;
@@ -13,16 +16,12 @@ class App extends React.Component {
   }
 
 
-  render() {
-    return (
-     <div>
-     <NavbarHeader/>
-     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', marginLeft: '10vh', marginRight: '10vh'}}>
-          <Rooms/>
-     </div>
-     </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App" style={{height: "100%"}}>
+              <RegisterView/>
+            </div>);
+    }
 
 }
 
