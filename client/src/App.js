@@ -6,6 +6,7 @@ import NavbarHeader from './Untilities/NavbarHeader'
 import {Router} from "react-router-dom";
 import BaseRouter from "./routes";
 import {RegisterView} from "./views/RegisterView";
+import {LoginView} from "./views/LoginView";
 
 class App extends React.Component {
   url = API_ENDPOINT;
@@ -19,7 +20,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App" style={{height: "100%"}}>
-              <RegisterView/>
+              <LoginView/>
             </div>);
     }
 

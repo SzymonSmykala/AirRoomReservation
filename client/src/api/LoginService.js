@@ -15,8 +15,11 @@ export class LoginService{
             console.log(e);
             return new Error("Failed to Login");
         }
-        console.log("Login successful");
-        console.log(result);
-        return result;
+        if (result.ok){
+            const resultAsJson = await result.text();
+            console.log("Login successful");
+            return resultAsJson.token;
+        }
+        return new Error("Failed to Login");
     }
 }
