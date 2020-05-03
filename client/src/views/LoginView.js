@@ -48,7 +48,7 @@ export class LoginView extends React.Component {
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', marginLeft: '10vh', marginRight: '10vh'}}>
            <Form>
             <label>Sign Up</label>
-               <Button float="right">Sign In</Button>
+                <Button style={{ float: "right" }} >Sign In</Button>
             <FormGroup>
                 <label htmlFor="username">Your Username</label>
                 <InputGroup>
@@ -64,7 +64,7 @@ export class LoginView extends React.Component {
                 <Input type="password" name="password" id="examplePassword" placeholder="password" onChange={this.changeHandler}/>
             </FormGroup>
             <br/>
-            <Button color="primary"  onClick={this.registerClickHandler}>Login</Button>{' '}
+            <Button color="primary" onClick={this.registerClickHandler} style={{ float: "right" }}>Login</Button>{' '}
             </Form>
 
             </div>
