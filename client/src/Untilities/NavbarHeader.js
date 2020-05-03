@@ -49,7 +49,10 @@ class NavbarHeader extends React.Component {
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </Nav>
-                        <NavbarText>Simple Text</NavbarText>
+                        <NavItem>
+                            <NavLink href="/register">Register</NavLink>
+                        </NavItem>
+                        <NavbarText>Register</NavbarText>
                     </Collapse>
                 </Navbar>
             </div>

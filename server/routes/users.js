@@ -2,33 +2,35 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Bcrypt = require('bcryptjs');
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
-router.post('/', async(request, response) => {
 
-  try {
-    request.body.password = Bcrypt.hashSync(request.body.password, 10);
-    const user = new User(request.body);
-    const result = await user.save();
-    response.send({message: 'Success'});
-  } catch (error) {
-    console.error(error);
-    response.status(500).send(error);
-  }
+router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
+  res.json({
+    message : 'Signup successful',
+    user : req.user
+  });
 });
 
-router.post('/login', async(request, response) => {
-  try {
-    var user = await User.findOne({ username: request.body.username }).exec();
-    if (!user) {
-      return response.status(400).send({ message: 'The username does not exist' });
+router.post('/login', async (req, res, next) => {
+  passport.authenticate('login', async (err, user, info) => {     try {
+    if(err || !user){
+      const error = new Error('An Error occurred')
+      return next(error);
     }
-    if (!Bcrypt.compareSync(request.body.password, user.password)) {
-      return response.status(400).send({ message: 'The password is invalid' });
-    }
-    response.send({ message: 'The username and password combination is correct!' });
-  } catch (error) {
-    response.status(500).send(error);
+    req.login(user, { session : false }, async (error) => {
+      if( error ) return next(error)
+      const body = { _id : user._id, email : user.email };
+      const token = jwt.sign({ user : body },'top_secret');
+
+      let decoded = jwt.decode(token, "top_secret");
+
+      return res.json({ token: token, user_id: user._id });
+    });     } catch (error) {
+    return next(error);
   }
+  })(req, res, next);
 });
 
 router.get('/', async(request, response) => {

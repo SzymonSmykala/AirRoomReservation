@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from "reactstrap";
 import {ReservationService} from "../api/ReservationService";
+import Cookie from "js-cookie"
 
 
 export class RoomView extends React.Component {
@@ -67,7 +68,9 @@ export class RoomView extends React.Component {
         </div>
     }
 
+
     handleSubmit() {
-        this.reservationService.addReservation(this.state.startDate, this.state.endDate, "5e778da90236f173f9ceafc7", this.state.room._id).then((r) => console.log("WYSLANO" + JSON.stringify(r)))
+        const userId = Cookie.get('user_id');
+        this.reservationService.addReservation(this.state.startDate, this.state.endDate, userId, this.state.room._id).then((r) => console.log("WYSLANO" + JSON.stringify(r)))
     }
 }
