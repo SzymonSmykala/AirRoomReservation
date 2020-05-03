@@ -2,7 +2,7 @@ import * as React from "react";
 import {InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup, Button, Alert} from 'reactstrap';
 import {LoginService} from "../api/LoginService";
 import Cookie from "js-cookie"
-import {Router} from "react-router-dom";
+import {Redirect, Router} from "react-router-dom";
 
 export class LoginView extends React.Component {
 
@@ -27,15 +27,23 @@ export class LoginView extends React.Component {
     };
 
     registerClickHandler = async event => {
-        try {
-            let token = await this.loginService.login(this.state.username, this.state.password);
-            Cookie.set("token", token);
-        }catch (e) {
-            this.setState({ error: true})
+        let response = await this.loginService.login(this.state.username, this.state.password);
+        if(response.success){
+            Cookie.set("token", response.token);
+            Cookie.set("user_id", response.user_id);
+            this.setState({redirect: true})
+        }else{
+            this.setState({error: true})
         }
     };
 
     render() {
+        const { redirect } = this.state;
+
+        if(redirect) {
+            return (<Redirect to='/rooms' />);
+        }
+
         return <div>
             <InputGroup>
                 <InputGroupAddon addonType="prepend">

@@ -26,12 +26,11 @@ export class Rooms extends React.Component {
         </tr>
 
         const rooms = this.state.rooms.map(room => (
-                <tr>
+                <tr >
                     <th scope="row"><img src={room.photoUrl} width="100" height="100" alt={room.name}/></th>
                     <td><Link to={'/rooms/' + room._id }>{room.name} </Link></td>
                     <td>{room.costPerDay}</td>
                 </tr>
-
         ));
        return <Table>
             <thead>

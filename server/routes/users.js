@@ -5,18 +5,6 @@ const Bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-// router.post('/', async(request, response) => {
-//
-//   try {
-//     request.body.password = Bcrypt.hashSync(request.body.password, 10);
-//     const user = new User(request.body);
-//     const result = await user.save();
-//     response.send({message: 'Success'});
-//   } catch (error) {
-//     console.error(error);
-//     response.status(500).send(error);
-//   }
-// });
 
 router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
   res.json({
@@ -38,7 +26,7 @@ router.post('/login', async (req, res, next) => {
 
       let decoded = jwt.decode(token, "top_secret");
 
-      return res.json({ token });
+      return res.json({ token: token, user_id: user._id });
     });     } catch (error) {
     return next(error);
   }

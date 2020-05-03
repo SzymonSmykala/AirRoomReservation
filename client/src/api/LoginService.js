@@ -1,8 +1,13 @@
 import API_ENDPOINT from "../Constants";
 
+class LoginResponse {
+    success: boolean;
+    token: string;
+    user_id: string;
+}
 
 export class LoginService{
-    async login(username, password) : Promise<string>{
+    async login(username, password) : Promise<LoginResponse>{
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -13,13 +18,18 @@ export class LoginService{
             result = await fetch(API_ENDPOINT + '/users/login', requestOptions);
         }catch (e) {
             console.log(e);
-            return new Error("Failed to Login");
+            throw new Error("Failed to Login");
         }
+        let response = new LoginResponse();
+
         if (result.ok){
-            const resultAsJson = await result.text();
-            console.log("Login successful");
-            return resultAsJson.token;
+            response.success = true;
+            const resultAsJson = await JSON.parse(await result.text());
+            response.token = resultAsJson.token;
+            response.user_id = resultAsJson.user_id;
+            return response;
         }
-        return new Error("Failed to Login");
+        response.success = false;
+        return response;
     }
 }
