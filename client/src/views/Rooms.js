@@ -2,6 +2,7 @@ import React from 'react';
 import {RoomService} from '../api/RoomService';
 import { Table } from 'reactstrap';
 import {Link} from "react-router-dom";
+import NavbarHeader from "../Untilities/NavbarHeader";
 
 export class Rooms extends React.Component {
 
@@ -26,19 +27,25 @@ export class Rooms extends React.Component {
         </tr>
 
         const rooms = this.state.rooms.map(room => (
-                <tr >
+                <tr>
                     <th scope="row"><img src={room.photoUrl} width="100" height="100" alt={room.name}/></th>
                     <td><Link to={'/rooms/' + room._id }>{room.name} </Link></td>
                     <td>{room.costPerDay}</td>
                 </tr>
         ));
-       return <Table>
-            <thead>
-                {tableHeader}
-            </thead>
-            <tbody>
-                {rooms}
-            </tbody>
-        </Table>
+
+       return<div>
+           <NavbarHeader/>
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', marginLeft: '10vh', marginRight: '10vh'}}>
+           <Table>
+               <thead>
+               {tableHeader}
+               </thead>
+               <tbody>
+               {rooms}
+               </tbody>
+           </Table>
+       </div>
+       </div>
     }
 }

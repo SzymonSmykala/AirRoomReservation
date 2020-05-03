@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from "reactstrap";
 import {ReservationService} from "../api/ReservationService";
 import Cookie from "js-cookie"
+import {Redirect} from "react-router-dom";
 
 
 export class RoomView extends React.Component {
@@ -21,7 +22,8 @@ export class RoomView extends React.Component {
         this.state = {
             startDate: new Date(),
             endDate: new Date(),
-            room: "", state: ""
+            room: "", state: "",
+            redirect: false
         };
     }
 
@@ -54,6 +56,11 @@ export class RoomView extends React.Component {
     };
 
     render() {
+
+        if (this.state.redirect){
+            return (<Redirect to='/reservations' />);
+        }
+
         const room = this.state.room;
         return <div>
             <h1>Make reservation on {room.name}</h1>
@@ -71,6 +78,6 @@ export class RoomView extends React.Component {
 
     handleSubmit() {
         const userId = Cookie.get('user_id');
-        this.reservationService.addReservation(this.state.startDate, this.state.endDate, userId, this.state.room._id).then((r) => console.log("WYSLANO" + JSON.stringify(r)))
+        this.reservationService.addReservation(this.state.startDate, this.state.endDate, userId, this.state.room._id).then(this.setState(this.setState({redirect: true})));
     }
 }

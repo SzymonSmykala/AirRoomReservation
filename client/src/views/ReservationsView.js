@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
-import {Link} from "react-router-dom";
 import {ReservationService} from "../api/ReservationService";
+import NavbarHeader from "../Untilities/NavbarHeader";
 
 export class ReservationsView extends React.Component {
 
@@ -34,13 +34,16 @@ export class ReservationsView extends React.Component {
                 {/*<th scope="row"><img src={r.photoUrl} width="100" height="100" alt={r.name}/></th>*/}
                 {/*<td><Link to={'/rooms/' + r._id }>{r.name} </Link></td>*/}
                 {/*<td>{r.costPerDay}</td>*/}
-                <td>{r.startDate}</td>
-                <td>{r.endDate}</td>
+                <td>{new Date(r.startDate).toDateString()}</td>
+                <td>{new Date(r.endDate).toDateString()}</td>
                 <td>{r.room}</td>
                 <td>{r.status}</td>
             </tr>
         ));
-        return <Table>
+        return<div>
+            <NavbarHeader/>
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', marginLeft: '10vh', marginRight: '10vh'}}>
+        <Table>
             <thead>
             {tableHeader}
             </thead>
@@ -48,5 +51,7 @@ export class ReservationsView extends React.Component {
             {reservations}
             </tbody>
         </Table>
+        </div>
+        </div>
     }
 }
