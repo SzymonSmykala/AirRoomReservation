@@ -9,6 +9,7 @@ import {RoomView} from "./views/RoomView";
 import {RegisterView} from "./views/RegisterView";
 import {LoginView} from "./views/LoginView";
 import {Rooms} from "./views/Rooms";
+import {ReservationsView} from "./views/ReservationsView";
 
 
 const routing = (
@@ -18,6 +19,7 @@ const routing = (
             <Route exact path="/rooms" component={Rooms}/>
             <Route exact path="/register" component={RegisterView}/>
             <Route exact path="/login" component={LoginView}/>
+            <Route exact path="/reservations" component={ReservationsView}/>
             <Route exact path="/" component={App}/>
 
         </div>
