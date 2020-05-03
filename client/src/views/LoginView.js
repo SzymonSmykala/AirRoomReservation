@@ -1,8 +1,8 @@
 import * as React from "react";
-import {InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup, Button, Alert} from 'reactstrap';
+import {InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup, Button} from 'reactstrap';
 import {LoginService} from "../api/LoginService";
 import Cookie from "js-cookie"
-import {Redirect, Router} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 export class LoginView extends React.Component {
 

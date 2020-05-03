@@ -1,11 +1,6 @@
 import React from 'react';
 import './App.css';
 import API_ENDPOINT from "./Constants";
-import {Rooms} from './views/Rooms';
-import NavbarHeader from './Untilities/NavbarHeader'
-import {Router} from "react-router-dom";
-import BaseRouter from "./routes";
-import {RegisterView} from "./views/RegisterView";
 import {LoginView} from "./views/LoginView";
 
 class App extends React.Component {
