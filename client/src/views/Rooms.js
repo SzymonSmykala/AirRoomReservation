@@ -15,7 +15,8 @@ export class Rooms extends React.Component {
     }
 
     componentDidMount() {
-        this.roomsService.fetchRoomsAsync().then(result => this.setState({rooms: result}), result => {console.log(result)});
+        this.roomsService.fetchAvailableRoomsForSelectedDatesAsync(new Date("2010-05-05T10:08:33.744Z"), new Date("2021-05-03T10:08:32.744Z"))
+            .then(result => this.setState({rooms: result}), result => {console.log(result)});
     }
 
     render() {
