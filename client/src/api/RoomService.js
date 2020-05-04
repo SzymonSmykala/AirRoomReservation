@@ -24,6 +24,7 @@ export class RoomService {
         console.log("Fetched: " + roomObject.name);
         return roomObject;
     }
+
     async fetchAvailableRoomsForSelectedDatesAsync(startDate, endDate): Array<Room> {
         const requestOptions = {
             method: 'POST',
@@ -36,9 +37,8 @@ export class RoomService {
         }catch (e) {
             console.log(e);
         }
-        var resultAsText = await result.text();
-        var objectResult = JSON.parse(resultAsText);
-        console.log(objectResult);
+        let resultAsText = await result.text();
+        let objectResult = JSON.parse(resultAsText);
         return objectResult;
     }
 }
