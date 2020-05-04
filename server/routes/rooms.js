@@ -59,7 +59,6 @@ router.patch('/', async(req, res) => {
 });
 
 router.post('/roomsForDates', async(req, res) => {
-  let roomId = req.body.roomId;
   let startDate = req.body.startDate;
   let endDate = req.body.endDate;
 
@@ -70,8 +69,10 @@ router.post('/roomsForDates', async(req, res) => {
   let endDateDate = new Date(endDate);
 
   for (const room of rooms) {
-      const reservations = await Reservation.find({"startDate": {"$gte": startDateDate}, "endDate": {"$lt": endDateDate}}).where('room').eq(roomId);
-      resultArray.push(reservations)
+      const reservations = await Reservation.find({"startDate": {"$gte": startDateDate}, "endDate": {"$lt": endDateDate}}).where('room').eq(room.id);
+      if (reservations.length === 0){
+        resultArray.push(room);
+      }
   }
   res.json(resultArray);
 });
