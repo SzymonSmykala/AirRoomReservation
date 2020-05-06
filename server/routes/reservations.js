@@ -4,7 +4,9 @@ const Reservation = require('../models/Reservation');
 
 router.post('/', async(req, res) => {
   try {
-    const reservation = new Reservation(req.body);
+    let reservation = new Reservation(req.body);
+    reservation.startDate.setHours(0, 0, 1, 0);
+    reservation.endDate.setHours(23, 59, 59, 0);
     const response = await reservation.save();
     res.json(response);
   } catch (error) {

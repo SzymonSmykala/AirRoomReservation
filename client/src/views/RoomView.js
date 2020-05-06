@@ -48,9 +48,7 @@ export class RoomView extends React.Component {
         const oneDay = 24 * 60 * 60 * 1000;
         const firstDate = this.state.startDate;
         const secondDate = this.state.endDate;
-        console.log("First" + firstDate);
         const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-        console.log(diffDays)
         const currentCost = diffDays * this.state.room.costPerDay;
         this.setState({cost: currentCost});
     };

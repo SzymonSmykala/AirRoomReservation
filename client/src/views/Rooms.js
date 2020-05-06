@@ -23,13 +23,18 @@ export class Rooms extends React.Component {
     handleChange = (date) =>  {
         this.setState({
             startDate: date,
-        });
+        }, function(){this.updateAvailableRooms()});
+    };
+
+    updateAvailableRooms = () => {
+        this.roomsService.fetchAvailableRoomsForSelectedDatesAsync(new Date(this.state.startDate), new Date(this.state.endDate))
+            .then(result => this.setState({rooms: result}), result => {console.log(result)});
     };
 
     handleEndDateChange = (date) => {
         this.setState({
             endDate: date
-        });
+        }, function(){this.updateAvailableRooms()});
     };
 
     render() {

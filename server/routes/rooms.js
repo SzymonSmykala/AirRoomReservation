@@ -68,8 +68,15 @@ router.post('/roomsForDates', async(req, res) => {
   let startDateDate = new Date(startDate);
   let endDateDate = new Date(endDate);
 
+  startDateDate.setHours(0, 0, 1, 0);
+  endDateDate.setHours(23, 59,59,0);
+
   for (const room of rooms) {
-      const reservations = await Reservation.find({"startDate": {"$gte": startDateDate}, "endDate": {"$lt": endDateDate}}).where('room').eq(room.id);
+      const reservations = await Reservation.find({ $or: [{"startDate": {"$lte": startDateDate}, "endDate": {"$gte": startDateDate}},
+          {"startDate": {"$lte": endDateDate}, "endDate": {"$gte": endDateDate}},
+          {"startDate": {"$gte": startDateDate}, "endDate": {"$lte": endDateDate}},
+        ]}).where('room').eq(room.id);
+
       if (reservations.length === 0){
         resultArray.push(room);
       }
