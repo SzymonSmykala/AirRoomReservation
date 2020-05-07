@@ -38,4 +38,17 @@ export class ReservationService{
         }
         return JSON.parse(await result.text());
     }
+
+    async deleteReservationById(reservationId) : Promise {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        };
+        let result;
+        try {
+            result = await fetch(API_ENDPOINT + '/reservations/' + reservationId, requestOptions);
+        }catch (e) {
+            console.log(e);
+        }
+    }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'reactstrap';
+import {Button, Table} from 'reactstrap';
 import {ReservationService} from "../api/ReservationService";
 import NavbarHeader from "../Untilities/NavbarHeader";
 
@@ -27,6 +27,7 @@ export class ReservationsView extends React.Component {
             <th>End Date</th>
             <th>Room</th>
             <th>Status</th>
+            <th>Actions</th>
         </tr>
 
         const reservations = this.state.reservations.map(r => (
@@ -38,6 +39,11 @@ export class ReservationsView extends React.Component {
                 <td>{new Date(r.endDate).toDateString()}</td>
                 <td>{r.room}</td>
                 <td>{r.status}</td>
+                <td>
+                    <Button onClick={ () => this.handleCancel(r._id)}>Cancel</Button>
+                    <Button onClick={ () => this.handleEdit(r._id)}>Edit</Button>
+                </td>
+
             </tr>
         ));
         return<div>
@@ -53,5 +59,13 @@ export class ReservationsView extends React.Component {
         </Table>
         </div>
         </div>
+    }
+
+    handleCancel = reservationId =>  {
+        this.reservationService.deleteReservationById(reservationId).then(() => window.location.reload());
+    }
+
+    handleEdit = reservationId => {
+        //redirect
     }
 }
