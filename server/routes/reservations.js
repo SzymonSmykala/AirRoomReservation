@@ -41,10 +41,19 @@ router.get('/', async(req, res) => {
 
 });
 
-router.get('/:userId', async(req, res) => {
+router.get('/user/:userId', async(req, res) => {
   try {
     const reservations = await Reservation.find().where('user').eq(req.params.userId);
     res.json(reservations);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+router.get('/:reservationId', async(req, res) => {
+  try {
+    const reservation = await Reservation.findById(req.params.reservationId);
+    res.json(reservation);
   } catch (error) {
     res.json(error);
   }

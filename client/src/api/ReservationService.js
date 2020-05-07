@@ -32,11 +32,25 @@ export class ReservationService{
 
         let result;
         try {
-            result = await fetch(API_ENDPOINT + '/reservations/' + userId);
+            result = await fetch(API_ENDPOINT + '/reservations/user/' + userId);
         }catch (e) {
             console.log(e);
         }
         return JSON.parse(await result.text());
+    }
+
+    async getReservationById(reservationId) : Promise<Reservation> {
+        const userId = Cookie.get('user_id');
+        const token = Cookie.get('token');
+        let result;
+        try {
+            result = await fetch(API_ENDPOINT + '/reservations/' + reservationId);
+        }catch (e) {
+            console.log(e);
+        }
+
+        let objectResult = JSON.parse(await result.text());
+        return objectResult;
     }
 
     async deleteReservationById(reservationId) : Promise {

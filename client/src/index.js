@@ -10,7 +10,7 @@ import {RegisterView} from "./views/RegisterView";
 import {LoginView} from "./views/LoginView";
 import {Rooms} from "./views/Rooms";
 import {ReservationsView} from "./views/ReservationsView";
-
+import {EditReservationView} from "./views/EditReservationView";
 
 const routing = (
     <BrowserRouter>
@@ -20,6 +20,7 @@ const routing = (
             <Route exact path="/register" component={RegisterView}/>
             <Route exact path="/login" component={LoginView}/>
             <Route exact path="/reservations" component={ReservationsView}/>
+            <Route exact path="/reservation/:reservationId" component={EditReservationView}/>
             <Route exact path="/" component={App}/>
 
         </div>
