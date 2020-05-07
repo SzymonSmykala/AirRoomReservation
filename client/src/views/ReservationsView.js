@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Table} from 'reactstrap';
 import {ReservationService} from "../api/ReservationService";
 import NavbarHeader from "../Untilities/NavbarHeader";
+import {Link} from "react-router-dom";
 
 export class ReservationsView extends React.Component {
 
@@ -41,7 +42,9 @@ export class ReservationsView extends React.Component {
                 <td>{r.status}</td>
                 <td>
                     <Button onClick={ () => this.handleCancel(r._id)}>Cancel</Button>
-                    <Button onClick={ () => this.handleEdit(r._id)}>Edit</Button>
+                    <span className="input-group-btn">
+                        <Link to={"/reservation/" + r._id}>Edit</Link>
+                    </span>
                 </td>
 
             </tr>

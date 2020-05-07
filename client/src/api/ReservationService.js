@@ -65,4 +65,20 @@ export class ReservationService{
             console.log(e);
         }
     }
+
+    async updateReservation(reservation) : Promise {
+        const requestOptions = {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(reservation)
+        };
+        let result;
+        try {
+            result = await fetch(API_ENDPOINT + '/reservations/' , requestOptions);
+        }catch (e) {
+            console.log(e);
+        }
+        console.log(" updateReservationresult: " + await result.text());
+        return result;
+    }
 }
