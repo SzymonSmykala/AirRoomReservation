@@ -1,7 +1,7 @@
 import {Component, default as React} from "react";
 import {Redirect} from "react-router-dom";
 import DatePicker from "react-datepicker";
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {Button} from "reactstrap";
 import {RoomService} from "../api/RoomService";
 import {ReservationService} from "../api/ReservationService";
 

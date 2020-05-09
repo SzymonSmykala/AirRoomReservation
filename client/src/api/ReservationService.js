@@ -28,7 +28,6 @@ export class ReservationService{
 
     async getReservationByUser() : Promise<Array<Reservation>> {
         const userId = Cookie.get('user_id');
-        const token = Cookie.get('token');
 
         let result;
         try {
@@ -40,8 +39,6 @@ export class ReservationService{
     }
 
     async getReservationById(reservationId) : Promise<Reservation> {
-        const userId = Cookie.get('user_id');
-        const token = Cookie.get('token');
         let result;
         try {
             result = await fetch(API_ENDPOINT + '/reservations/' + reservationId);
@@ -49,8 +46,7 @@ export class ReservationService{
             console.log(e);
         }
 
-        let objectResult = JSON.parse(await result.text());
-        return objectResult;
+        return JSON.parse(await result.text());
     }
 
     async deleteReservationById(reservationId) : Promise {
@@ -64,6 +60,7 @@ export class ReservationService{
         }catch (e) {
             console.log(e);
         }
+        return await result.text();
     }
 
     async updateReservation(reservation) : Promise {

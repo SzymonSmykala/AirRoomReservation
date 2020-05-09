@@ -6,7 +6,7 @@ router.post('/', async(req, res) => {
   try {
     let reservation = new Reservation(req.body);
 
-    if (await checkRoomAvailabilityForUpdate(reservation.startDate, reservation.endDate, reservation.room))  {
+    if (await checkRoomAvailability(reservation.startDate, reservation.endDate, reservation.room))  {
       reservation.status = "Pending";
       reservation.startDate.setHours(0, 0, 1, 0);
       reservation.endDate.setHours(23, 59, 59, 0);
