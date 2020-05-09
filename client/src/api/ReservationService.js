@@ -78,7 +78,6 @@ export class ReservationService{
         }catch (e) {
             console.log(e);
         }
-        console.log(" updateReservationresult: " + await result.text());
         return result;
     }
 }

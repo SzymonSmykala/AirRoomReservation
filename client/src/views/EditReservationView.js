@@ -1,7 +1,7 @@
 import {Component, default as React} from "react";
 import {Redirect} from "react-router-dom";
 import DatePicker from "react-datepicker";
-import {Button} from "reactstrap";
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {RoomService} from "../api/RoomService";
 import {ReservationService} from "../api/ReservationService";
 
@@ -17,7 +17,7 @@ export class EditReservationView extends Component{
         this.state = {
             startDate: new Date(),
             endDate: new Date(),
-            room: "", state: "", reservation: "",
+            room: "", state: "", reservation: "", modal: false,
             redirect: false
         };
     }
@@ -38,8 +38,12 @@ export class EditReservationView extends Component{
         let reservation = this.state.reservation;
         reservation.startDate = this.state.startDate;
         reservation.endDate = this.state.endDate;
-        this.reservationService.updateReservation(reservation).then(r => console.log(r));;
+        this.reservationService.updateReservation(reservation).then(r => this.handleReservationResponse(r));
     }
+
+   toggle = () => {
+        console.log('toggle');
+   };
 
     render() {
 
@@ -63,11 +67,11 @@ export class EditReservationView extends Component{
 
     handleStartDateChange = (date) => {
         this.setState({startDate: date}, function(){this.updateCost()});
-    }
+    };
 
     handleEndDateChange = (date) => {
         this.setState({endDate: date}, function(){this.updateCost()});
-    }
+    };
 
     updateCost = () => {
 
@@ -78,4 +82,12 @@ export class EditReservationView extends Component{
         const currentCost = diffDays * this.state.room.costPerDay;
         this.setState({cost: currentCost});
     };
+
+    async handleReservationResponse(response) {
+        if (response.ok) {
+            this.setState({redirect: true});
+        } else {
+            alert(await response.text());
+        }
+    }
 }
