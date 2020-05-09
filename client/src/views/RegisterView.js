@@ -1,6 +1,7 @@
 import * as React from "react";
 import {InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup, Button} from 'reactstrap';
 import {RegisterService} from "../api/RegisterService";
+import {Redirect} from "react-router-dom";
 
 export class RegisterView extends React.Component {
 
@@ -24,10 +25,18 @@ export class RegisterView extends React.Component {
     };
 
     registerClickHandler = async event => {
-        await this.registerService.registerUser(this.state.username, this.state.password);
+        let response = await this.registerService.registerUser(this.state.username, this.state.password);
+        if (response.ok){
+            this.setState({redirect: true})
+        }
     };
 
     render() {
+
+        if (this.state.redirect) {
+            return (<Redirect to='/login' />);
+        }
+
         return <div>
             REGISTER
             <InputGroup>

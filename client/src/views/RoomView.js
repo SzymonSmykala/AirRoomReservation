@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from "reactstrap";
 import {ReservationService} from "../api/ReservationService";
 import Cookie from "js-cookie"
+import {Redirect} from "react-router-dom";
 
 
 export class RoomView extends React.Component {
@@ -21,7 +22,8 @@ export class RoomView extends React.Component {
         this.state = {
             startDate: new Date(),
             endDate: new Date(),
-            room: "", state: ""
+            room: "", state: "",
+            redirect: false
         };
     }
 
@@ -46,14 +48,17 @@ export class RoomView extends React.Component {
         const oneDay = 24 * 60 * 60 * 1000;
         const firstDate = this.state.startDate;
         const secondDate = this.state.endDate;
-        console.log("First" + firstDate);
         const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-        console.log(diffDays)
         const currentCost = diffDays * this.state.room.costPerDay;
         this.setState({cost: currentCost});
     };
 
     render() {
+
+        if (this.state.redirect){
+            return (<Redirect to='/reservations' />);
+        }
+
         const room = this.state.room;
         return <div>
             <h1>Make reservation on {room.name}</h1>
@@ -68,9 +73,16 @@ export class RoomView extends React.Component {
         </div>
     }
 
-
     handleSubmit() {
         const userId = Cookie.get('user_id');
-        this.reservationService.addReservation(this.state.startDate, this.state.endDate, userId, this.state.room._id).then((r) => console.log("WYSLANO" + JSON.stringify(r)))
+        this.reservationService.addReservation(this.state.startDate, this.state.endDate, userId, this.state.room._id).then(res => this.handleReservationResponse(res));
+    }
+
+    async handleReservationResponse(response) {
+        if (response.ok) {
+            this.setState({redirect: true});
+        } else {
+            alert(await response.text());
+        }
     }
 }

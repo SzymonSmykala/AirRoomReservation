@@ -24,4 +24,21 @@ export class RoomService {
         console.log("Fetched: " + roomObject.name);
         return roomObject;
     }
+
+    async fetchAvailableRoomsForSelectedDatesAsync(startDate, endDate): Array<Room> {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ startDate: startDate, endDate: endDate })
+        };
+        let result;
+        try {
+            result = await fetch(API_ENDPOINT + '/rooms/roomsForDates', requestOptions);
+        }catch (e) {
+            console.log(e);
+        }
+        let resultAsText = await result.text();
+        let objectResult = JSON.parse(resultAsText);
+        return objectResult;
+    }
 }

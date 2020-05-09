@@ -7,15 +7,20 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
     NavbarText
 } from 'reactstrap';
 
 
 class NavbarHeader extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {username: ''}
+    }
+
+    handleLogout = () => {
+
+    };
 
     render(){
         return (
@@ -26,33 +31,13 @@ class NavbarHeader extends React.Component {
                     <Collapse isOpen={this.isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
+                                <NavLink href="/rooms">Rooms</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                                <NavLink href="/reservations">My reservations</NavLink>
                             </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        Option 1
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        Option 2
-                                    </DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                        Reset
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
                         </Nav>
-                        <NavItem>
-                            <NavLink href="/register">Register</NavLink>
-                        </NavItem>
-                        <NavbarText>Register</NavbarText>
+                        <NavbarText OnClick={this.handleLogout}>Logout</NavbarText>
                     </Collapse>
                 </Navbar>
             </div>
