@@ -34,7 +34,7 @@ class NavbarHeader extends React.Component {
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">AirRoomReservation</NavbarBrand>
+                    <NavbarBrand href="/rooms">AirRoomReservation</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.isOpen} navbar>
                         <Nav className="mr-auto" navbar>

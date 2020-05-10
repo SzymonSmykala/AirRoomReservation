@@ -48,12 +48,12 @@ export class ReservationsView extends React.Component {
                     <td>{new Date(r.endDate).toDateString()}</td>
                     <td>{r.status}</td>
                     <td>
-                        <Button onClick={() => this.handleCancel(r._id)}>Cancel</Button>
+                        <Button onClick={() => this.handleCancel(r._id)} style={{marginBottom: "10px"}}>Cancel</Button>
+                        <br/>
                         <span className="input-group-btn">
-                        <Link to={"/reservation/" + r._id}>Edit</Link>
+                        <Link className="btn btn-secondary" to={"/reservation/" + r._id}>Edit</Link>
                     </span>
                     </td>
-
                 </tr>
             ));
         }

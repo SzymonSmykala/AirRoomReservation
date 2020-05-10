@@ -56,13 +56,18 @@ export class Rooms extends React.Component {
 
        return<div>
            <NavbarHeader/>
-           <div>
-               <h2>From</h2>
-               <DatePicker selected={this.state.startDate} onChange={date => this.handleChange(date)} />
-               <h2>To</h2>
-               <DatePicker selected={this.state.endDate} onChange={date => this.handleEndDateChange(date)} />
+           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginLeft: '10vh', marginRight: '10vh', marginTop: '10vh'}}>
+               <div style={{float: "left", margin: "10px"}}>
+                  <h2>From</h2>
+                   <DatePicker selected={this.state.startDate} onChange={date => this.handleChange(date)} />
+               </div>
+               <div style={{float: "left",  margin: "10px"}}>
+                    <h2>To</h2>
+                    <DatePicker selected={this.state.endDate} onChange={date => this.handleEndDateChange(date)} />
+               </div>
            </div>
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', marginLeft: '10vh', marginRight: '10vh'}}>
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '80vh', marginLeft: '10vh', marginRight: '10vh'}}>
+
            <Table>
                <thead>
                {tableHeader}

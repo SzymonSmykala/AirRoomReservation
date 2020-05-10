@@ -41,11 +41,11 @@ export class AdminPanelView extends React.Component {
                 <td>{r.room}</td>
                 <td>{r.status}</td>
                 <td>
-                    <Button onClick={ () => this.handleCancel(r._id)}>Cancel</Button>
-                    <span className="input-group-btn">
-                        <Link to={"/reservation/" + r._id}>Edit</Link>
+                    <Button onClick={ () => this.handleCancel(r._id)} style={{ margin: "5px"}}>Cancel</Button>
+                    <span className="input-group-btn" >
+                        <Link className="btn btn-secondary" to={"/reservation/" + r._id} style={{ margin: "5px"}}>Edit</Link>
                     </span>
-                    <Button onClick={() => this.handleApprove(r)}>Approve</Button>
+                    <Button onClick={() => this.handleApprove(r)} style={{ margin: "5px"}}>Approve</Button>
                 </td>
 
             </tr>
