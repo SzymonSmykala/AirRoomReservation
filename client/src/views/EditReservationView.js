@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import {Button} from "reactstrap";
 import {RoomService} from "../api/RoomService";
 import {ReservationService} from "../api/ReservationService";
+import NavbarHeader from "../Untilities/NavbarHeader";
 
 export class EditReservationView extends Component{
 
@@ -55,6 +56,8 @@ export class EditReservationView extends Component{
 
         const room = this.state.room;
         return <div>
+            <NavbarHeader/>
+            <br/>
             <h1>Modifying reservation on {room.name}</h1>
             <th scope="row"><img src={room.photoUrl} width="300" height="300" alt={room.name}/></th>
             <b>Current reservation: {new Date(this.state.oldStartDate).toDateString()} - {new Date(this.state.oldEndDate).toDateString()}</b>

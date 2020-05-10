@@ -8,6 +8,7 @@ import {Button} from "reactstrap";
 import {ReservationService} from "../api/ReservationService";
 import Cookie from "js-cookie"
 import {Redirect} from "react-router-dom";
+import NavbarHeader from "../Untilities/NavbarHeader";
 
 
 export class RoomView extends React.Component {
@@ -61,6 +62,7 @@ export class RoomView extends React.Component {
 
         const room = this.state.room;
         return <div>
+            <NavbarHeader/>
             <h1>Make reservation on {room.name}</h1>
             <th scope="row"><img src={room.photoUrl} width="300" height="300" alt={room.name}/></th>
             <h2>From</h2>
