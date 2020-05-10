@@ -17,21 +17,23 @@ export class EditReservationView extends Component{
         this.state = {
             startDate: new Date(),
             endDate: new Date(),
-            room: "", state: "", reservation: "", modal: false,
+            room: "", state: "", reservation: "", modal: false, cost: "", oldStartDate: "", oldEndDate: "", oldCost: "",
             redirect: false
         };
     }
 
-    componentDidMount(): void {
-        this.handleReservationData();
+    async componentDidMount(): void {
+        await this.handleReservationData();
     }
 
     handleReservationData = async () => {
         let reservationId = this.props.match.params.reservationId;
         let fetchedReservation = await this.reservationService.getReservationById(reservationId);
+        this.setState({cost: fetchedReservation.cost});
         this.roomsService.fetchRoomByIdAsync(fetchedReservation.room).then(r => this.setState({room: r}));
-        console.log(fetchedReservation);
         await this.setState({reservation: fetchedReservation, startDate: new Date(fetchedReservation.startDate), endDate: new Date(fetchedReservation.endDate)});
+        await this.setState({oldStartDate: fetchedReservation.startDate, oldEndDate: fetchedReservation.endDate, oldCost: fetchedReservation.cost});;
+
     };
 
     handleSubmit() {
@@ -53,8 +55,11 @@ export class EditReservationView extends Component{
 
         const room = this.state.room;
         return <div>
-            <h1>Edit reservation on {room.name}</h1>
+            <h1>Modifying reservation on {room.name}</h1>
             <th scope="row"><img src={room.photoUrl} width="300" height="300" alt={room.name}/></th>
+            <b>Current reservation: {new Date(this.state.oldStartDate).toDateString()} - {new Date(this.state.oldEndDate).toDateString()}</b>
+            <br/>
+            <b>Current total cost: {this.state.oldCost}</b>
             <h2>From</h2>
             <DatePicker selected={this.state.startDate} onChange={date => this.handleStartDateChange(date)} />
             <h2>To</h2>
@@ -74,7 +79,6 @@ export class EditReservationView extends Component{
     };
 
     updateCost = () => {
-
         const oneDay = 24 * 60 * 60 * 1000;
         const firstDate = this.state.startDate;
         const secondDate = this.state.endDate;
