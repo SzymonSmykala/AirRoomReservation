@@ -3,6 +3,7 @@ import API_ENDPOINT from "../Constants";
 class LoginResponse {
     success: boolean;
     token: string;
+    user_type: string;
     user_id: string;
 }
 
@@ -25,7 +26,9 @@ export class LoginService{
         if (result.ok){
             response.success = true;
             const resultAsJson = await JSON.parse(await result.text());
+            console.log(resultAsJson);
             response.token = resultAsJson.token;
+            response.user_type = resultAsJson.type;
             response.user_id = resultAsJson.user_id;
             return response;
         }

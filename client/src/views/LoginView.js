@@ -15,7 +15,7 @@ export class LoginView extends React.Component {
             username: "",
             password: "",
             submitted: false,
-            redirect: false,
+            redirect: false, redirectAdmin: false,
             error: false
         };
     }
@@ -31,14 +31,23 @@ export class LoginView extends React.Component {
         if(response.success){
             Cookie.set("token", response.token);
             Cookie.set("user_id", response.user_id);
-            this.setState({redirect: true})
+            console.log(response);
+            if (response.user_type === 'admin'){
+                this.setState({ redirectAdmin: true });
+            }else {
+                this.setState({redirect: true})
+            }
         }else{
             this.setState({error: true})
         }
     };
 
     render() {
-        const { redirect } = this.state;
+        const { redirect, redirectAdmin } = this.state;
+
+        if (redirectAdmin){
+            return (<Redirect to="/adminPanel"/>);
+        }
 
         if(redirect) {
             return (<Redirect to='/rooms' />);

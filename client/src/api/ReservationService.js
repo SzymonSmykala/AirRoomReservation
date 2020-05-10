@@ -77,4 +77,15 @@ export class ReservationService{
         }
         return result;
     }
+
+    async getAllReservations(): Promise<Array<Reservation>>{
+
+        let result;
+        try {
+            result = await fetch(API_ENDPOINT + '/reservations');
+        }catch (e) {
+            console.log(e);
+        }
+        return JSON.parse(await result.text());
+    }
 }
