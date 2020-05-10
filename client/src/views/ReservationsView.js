@@ -29,6 +29,7 @@ export class ReservationsView extends React.Component {
         const tableHeader =  <tr>
             <th>Photo</th>
             <th>Cost per day</th>
+            <th>Total cost</th>
             <th>Name</th>
             <th>Start Date</th>
             <th>End Date</th>
@@ -40,8 +41,8 @@ export class ReservationsView extends React.Component {
                 reservations = this.state.reservations.map((r) => (
                 <tr>
                     <th scope="row"><img src={this.state.rooms.get(r.room).photoUrl}width="100" height="100" alt={this.state.rooms.get(r.room).name}/></th>
-                    {/*<td><Link to={'/rooms/' + r._id }>{this.state.rooms.get(r.room).name}</Link></td>*/}
                     <td>{this.state.rooms.get(r.room).costPerDay}</td>
+                    <td>{r.cost}</td>
                     <td>{this.state.rooms.get(r.room).name}</td>
                     <td>{new Date(r.startDate).toDateString()}</td>
                     <td>{new Date(r.endDate).toDateString()}</td>
@@ -75,21 +76,13 @@ export class ReservationsView extends React.Component {
 
     handleCancel = reservationId =>  {
         this.reservationService.deleteReservationById(reservationId).then(() => window.location.reload());
-    }
-
-    handleEdit = reservationId => {
-        //redirect
-    }
+    };
 
     async fetchRoomsDate() {
-        console.log('fetchRoomsDate');
         for (const reservation of this.state.reservations) {
            let room = await this.roomService.fetchRoomByIdAsync(reservation.room)
              this.state.rooms.set(reservation.room, room);
-
-           console.log("FETCHED!");
         }
         this.setState({fetched: true});
-
     }
 }
