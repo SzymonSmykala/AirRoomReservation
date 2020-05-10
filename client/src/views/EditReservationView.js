@@ -8,8 +8,8 @@ import NavbarHeader from "../Untilities/NavbarHeader";
 
 export class EditReservationView extends Component{
 
-    roomsService;
-    reservationService;
+    roomsService: RoomService;
+    reservationService : ReservationService;
 
     constructor(props){
         super(props);
@@ -85,7 +85,7 @@ export class EditReservationView extends Component{
         const oneDay = 24 * 60 * 60 * 1000;
         const firstDate = this.state.startDate;
         const secondDate = this.state.endDate;
-        const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+        const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) + 1;
         const currentCost = diffDays * this.state.room.costPerDay;
         this.setState({cost: currentCost});
     };

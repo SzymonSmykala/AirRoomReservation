@@ -13,23 +13,23 @@ import NavbarHeader from "../Untilities/NavbarHeader";
 
 export class RoomView extends React.Component {
 
-    roomsService;
-    reservationService;
+    roomsService: RoomService;
+    reservationService : ReservationService;
 
     constructor(props){
         super(props);
         this.roomsService = new RoomService();
         this.reservationService = new ReservationService();
         this.state = {
-            startDate: new Date(),
-            endDate: new Date(),
+            startDate: new Date(this.props.match.params.startDate),
+            endDate: new Date(this.props.match.params.endDate),
             room: "", state: "",
             redirect: false
         };
     }
 
     componentDidMount() {
-        this.roomsService.fetchRoomByIdAsync(this.props.match.params.id).then(result => this.setState({room: result}));
+        this.roomsService.fetchRoomByIdAsync(this.props.match.params.id).then(result => this.setState({room: result})).then(() => this.updateCost());
     }
 
     handleChange = (date) =>  {
@@ -49,7 +49,7 @@ export class RoomView extends React.Component {
         const oneDay = 24 * 60 * 60 * 1000;
         const firstDate = this.state.startDate;
         const secondDate = this.state.endDate;
-        const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+        const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) + 1;
         const currentCost = diffDays * this.state.room.costPerDay;
         this.setState({cost: currentCost});
     };

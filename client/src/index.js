@@ -17,7 +17,7 @@ import LogoutView from "./views/LogoutView";
 const routing = (
     <BrowserRouter>
         <div>
-            <Route exact path="/rooms/:id" component={RoomView}/>
+            <Route exact path="/rooms/:id/:startDate/:endDate" component={RoomView}/>
             <Route exact path="/rooms" component={Rooms}/>
             <Route exact path="/register" component={RegisterView}/>
             <Route exact path="/login" component={LoginView}/>
