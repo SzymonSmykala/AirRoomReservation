@@ -2,7 +2,7 @@ import * as React from "react";
 import {InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup, Button, Form, Label} from 'reactstrap';
 import {LoginService} from "../api/LoginService";
 import Cookie from "js-cookie"
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 
 export class LoginView extends React.Component {
@@ -57,8 +57,8 @@ export class LoginView extends React.Component {
         return <div>
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', marginLeft: '10vh', marginRight: '10vh'}}>
            <Form>
-            <label>Sign Up</label>
-                <Button style={{ float: "right" }} >Sign In</Button>
+            <label>Sign In</label>
+               <Link to="/register" className="btn btn-primary" style={{float: "right"}}>Sign up</Link>
             <FormGroup>
                 <label htmlFor="username">Your Username</label>
                 <InputGroup>
