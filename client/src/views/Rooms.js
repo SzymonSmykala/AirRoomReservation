@@ -12,7 +12,7 @@ export class Rooms extends React.Component {
     constructor(props){
         super(props);
         this.roomsService = new RoomService();
-        this.state = {rooms: [], startDate: new Date(), endDate: ""};
+        this.state = {rooms: [], startDate: new Date(), endDate: new Date()};
     }
 
     componentDidMount() {
@@ -45,10 +45,11 @@ export class Rooms extends React.Component {
             <th>Cost per day</th>
         </tr>
 
+        const {startDate, endDate} = this.state;
         const rooms = this.state.rooms.map(room => (
                 <tr>
                     <th scope="row"><img src={room.photoUrl} width="100" height="100" alt={room.name}/></th>
-                    <td><Link to={'/rooms/' + room._id }>{room.name} </Link></td>
+                    <td><Link to={'/rooms/' + room._id + "/" + new Date(startDate).toISOString() + "/" + new Date(endDate).toISOString()}>{room.name} </Link></td>
                     <td>{room.costPerDay}</td>
                 </tr>
         ));
