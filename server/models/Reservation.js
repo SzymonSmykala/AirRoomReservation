@@ -12,6 +12,9 @@ const Reservation = new mongoose.Schema({
   status:{
     type: String
   },
+  cost:{
+    type: Number
+  },
   user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
   room: {type: mongoose.Schema.Types.ObjectId, ref: 'Room', required: true},
 

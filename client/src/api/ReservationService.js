@@ -7,15 +7,16 @@ export class Reservation {
     endDate;
     user;
     room;
+    cost;
     __v;
 }
 
 export class ReservationService{
-    async addReservation(startDate, endDate, user, room){
+    async addReservation(startDate, endDate, user, room, cost){
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ user: user, startDate: startDate, room: room, endDate: endDate })
+            body: JSON.stringify({ user: user, startDate: startDate, room: room, endDate: endDate, cost: cost})
         };
         let result;
         try {

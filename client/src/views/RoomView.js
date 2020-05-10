@@ -75,7 +75,7 @@ export class RoomView extends React.Component {
 
     handleSubmit() {
         const userId = Cookie.get('user_id');
-        this.reservationService.addReservation(this.state.startDate, this.state.endDate, userId, this.state.room._id).then(res => this.handleReservationResponse(res));
+        this.reservationService.addReservation(this.state.startDate, this.state.endDate, userId, this.state.room._id, this.state.cost).then(res => this.handleReservationResponse(res));
     }
 
     async handleReservationResponse(response) {
