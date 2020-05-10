@@ -4,6 +4,7 @@ import {LoginService} from "../api/LoginService";
 import Cookie from "js-cookie"
 import {Redirect} from "react-router-dom";
 
+
 export class LoginView extends React.Component {
 
     loginService: LoginService;

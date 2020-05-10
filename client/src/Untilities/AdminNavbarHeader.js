@@ -6,8 +6,7 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    NavbarText
+    NavLink
 } from 'reactstrap';
 
 
@@ -34,7 +33,11 @@ export default class AdminNavbarHeader extends React.Component {
                                 <NavLink href="/adminPanel">Manage reservations</NavLink>
                             </NavItem>
                         </Nav>
-                        <NavbarText OnClick={this.handleLogout}>Logout</NavbarText>
+                        <Nav  navbar>
+                            <NavItem>
+                                <NavLink href="/logout">Logout</NavLink>
+                            </NavItem>
+                        </Nav>
                     </Collapse>
                 </Navbar>
             </div>

@@ -12,6 +12,7 @@ import {Rooms} from "./views/Rooms";
 import {ReservationsView} from "./views/ReservationsView";
 import {EditReservationView} from "./views/EditReservationView";
 import {AdminPanelView} from "./views/AdminPanelView";
+import LogoutView from "./views/LogoutView";
 
 const routing = (
     <BrowserRouter>
@@ -23,6 +24,7 @@ const routing = (
             <Route exact path="/reservations" component={ReservationsView}/>
             <Route exact path="/reservation/:reservationId" component={EditReservationView}/>
             <Route exact path="/adminPanel" component={AdminPanelView}/>
+            <Route exact path="/logout" component={LogoutView}/>
             <Route exact path="/" component={App}/>
 
         </div>

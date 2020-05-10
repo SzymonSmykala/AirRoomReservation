@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookie from "js-cookie"
 import {
     Collapse,
     Navbar,
@@ -6,23 +7,30 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    NavbarText
+    NavLink
 } from 'reactstrap';
+import {Redirect} from "react-router-dom";
 
 
 class NavbarHeader extends React.Component {
 
     constructor() {
         super();
-        this.state = {username: ''}
+        this.state = {username: '', logout: false}
     }
 
     handleLogout = () => {
-
+        Cookie.remove('user_id');
+        Cookie.remove('token');
+        this.setState( {logout: true});
     };
 
     render(){
+
+        if (this.state.logout){
+            return (<Redirect to="/login" />);
+        }
+
         return (
             <div>
                 <Navbar color="light" light expand="md">
@@ -37,7 +45,11 @@ class NavbarHeader extends React.Component {
                                 <NavLink href="/reservations">My reservations</NavLink>
                             </NavItem>
                         </Nav>
-                        <NavbarText OnClick={this.handleLogout}>Logout</NavbarText>
+                        <Nav  navbar>
+                        <NavItem>
+                            <NavLink href="/logout">Logout</NavLink>
+                        </NavItem>
+                        </Nav>
                     </Collapse>
                 </Navbar>
             </div>
