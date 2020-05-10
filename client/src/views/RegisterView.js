@@ -1,7 +1,7 @@
 import * as React from "react";
-import {InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup, Button} from 'reactstrap';
+import {InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup, Button, Form, Label} from 'reactstrap';
 import {RegisterService} from "../api/RegisterService";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 export class RegisterView extends React.Component {
 
@@ -38,19 +38,29 @@ export class RegisterView extends React.Component {
         }
 
         return <div>
-            REGISTER
-            <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                    <InputGroupText name="username" >@</InputGroupText>
-                </InputGroupAddon>
-                <Input placeholder="username" onChange={this.changeHandler} name="username"/>
-            </InputGroup>
-            <br/>
-            <FormGroup>
-                <Input type="password" name="password" id="examplePassword" placeholder="password" onChange={this.changeHandler}/>
-            </FormGroup>
-            <br/>
-            <Button color="primary" onClick={this.registerClickHandler}>Sign Up</Button>{' '}
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', marginLeft: '10vh', marginRight: '10vh'}}>
+                <Form>
+                    <label>Sign Up</label>
+                    <Link to="/login" className="btn btn-primary" style={{float: "right"}}>Sign in</Link>
+                    <FormGroup>
+                        <label htmlFor="username">Your Username</label>
+                        <InputGroup>
+                            <InputGroupAddon addonType="prepend">
+                                <InputGroupText name="username" >@</InputGroupText>
+                            </InputGroupAddon>
+                            <Input placeholder="username" onChange={this.changeHandler} name="username"/>
+                        </InputGroup>
+                    </FormGroup>
+                    <br/>
+                    <FormGroup>
+                        <Label for="examplePassword">Your Password</Label>
+                        <Input type="password" name="password" id="examplePassword" placeholder="password" onChange={this.changeHandler}/>
+                    </FormGroup>
+                    <br/>
+                    <Button color="primary" onClick={this.registerClickHandler} style={{ float: "right" }}>Register</Button>{' '}
+                </Form>
+
+            </div>
         </div>
     }
 
