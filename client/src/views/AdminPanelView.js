@@ -1,8 +1,8 @@
 import React from 'react';
 import {Button, Table} from 'reactstrap';
 import {ReservationService} from "../api/ReservationService";
-import NavbarHeader from "../Untilities/NavbarHeader";
 import {Link} from "react-router-dom";
+import AdminNavbarHeader from "../Untilities/AdminNavbarHeader";
 
 export class AdminPanelView extends React.Component {
 
@@ -51,7 +51,7 @@ export class AdminPanelView extends React.Component {
             </tr>
         ));
         return<div>
-            <NavbarHeader/>
+            <AdminNavbarHeader/>
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', marginLeft: '10vh', marginRight: '10vh'}}>
                 <Table>
                     <thead>
