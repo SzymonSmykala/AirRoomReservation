@@ -80,7 +80,7 @@ export class Rooms extends React.Component {
                     <DatePicker selected={this.state.endDate} onChange={date => this.handleEndDateChange(date)} />
                </div>
            </div>
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '80vh', marginLeft: '10vh', marginRight: '10vh'}}>
+        <div style={{ justifyContent:'center', alignItems:'center', height: '80vh', marginLeft: '10vh', marginRight: '10vh', marginTop: '10vh'}}>
 
            <Table>
                <thead>
