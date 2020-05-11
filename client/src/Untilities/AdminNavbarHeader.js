@@ -25,7 +25,7 @@ export default class AdminNavbarHeader extends React.Component {
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">AirRoomReservation Admin</NavbarBrand>
+                    <NavbarBrand href="/adminPanel">AirRoomReservation Admin</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.isOpen} navbar>
                         <Nav className="mr-auto" navbar>

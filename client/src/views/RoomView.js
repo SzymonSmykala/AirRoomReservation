@@ -35,15 +35,28 @@ export class RoomView extends React.Component {
     handleChange = (date) =>  {
         this.setState({
             startDate: date,
-        }, function() { this.updateCost() });
+        }, function() { this.updateStartDate(); this.updateCost();  });
     };
 
     handleEndDateChange = (date) => {
         this.setState({
             endDate: date
-        }, function() { this.updateCost() });
+        }, function() {this.updateEndDate();  this.updateCost(); });
     };
 
+    updateStartDate = () => {
+        const {startDate, endDate} = this.state;
+        if (endDate < startDate){
+            this.setState({startDate: endDate});
+        }
+    };
+
+    updateEndDate = () => {
+        const {startDate, endDate} = this.state;
+        if (startDate > endDate){
+            this.setState({endDate: startDate});
+        }
+    }
     updateCost = () => {
 
         const oneDay = 24 * 60 * 60 * 1000;
@@ -65,6 +78,7 @@ export class RoomView extends React.Component {
             <NavbarHeader/>
             <h1>Make reservation on {room.name}</h1>
             <th scope="row"><img src={room.photoUrl} width="300" height="300" alt={room.name}/></th>
+            <b>Cost per day: {this.state.room.costPerDay}</b>
             <h2>From</h2>
             <DatePicker selected={this.state.startDate} onChange={date => this.handleChange(date)} />
             <h2>To</h2>
