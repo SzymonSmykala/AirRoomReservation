@@ -35,15 +35,28 @@ export class RoomView extends React.Component {
     handleChange = (date) =>  {
         this.setState({
             startDate: date,
-        }, function() { this.updateCost() });
+        }, function() { this.updateStartDate(); this.updateCost();  });
     };
 
     handleEndDateChange = (date) => {
         this.setState({
             endDate: date
-        }, function() { this.updateCost() });
+        }, function() {this.updateEndDate();  this.updateCost(); });
     };
 
+    updateStartDate = () => {
+        const {startDate, endDate} = this.state;
+        if (endDate < startDate){
+            this.state.startDate = this.state.endDate;
+        }
+    };
+
+    updateEndDate = () => {
+        const {startDate, endDate} = this.state;
+        if (startDate > endDate){
+            this.state.endDate = this.state.startDate;
+        }
+    }
     updateCost = () => {
 
         const oneDay = 24 * 60 * 60 * 1000;
