@@ -78,6 +78,7 @@ export class RoomView extends React.Component {
             <NavbarHeader/>
             <h1>Make reservation on {room.name}</h1>
             <th scope="row"><img src={room.photoUrl} width="300" height="300" alt={room.name}/></th>
+            <b>Cost per day: {this.state.room.costPerDay}</b>
             <h2>From</h2>
             <DatePicker selected={this.state.startDate} onChange={date => this.handleChange(date)} />
             <h2>To</h2>
