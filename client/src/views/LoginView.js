@@ -39,6 +39,7 @@ export class LoginView extends React.Component {
                 this.setState({redirect: true})
             }
         }else{
+            alert("Something went wrong");
             this.setState({error: true})
         }
     };

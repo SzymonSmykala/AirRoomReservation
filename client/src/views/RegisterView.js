@@ -28,6 +28,8 @@ export class RegisterView extends React.Component {
         let response = await this.registerService.registerUser(this.state.username, this.state.password);
         if (response.ok){
             this.setState({redirect: true})
+        }else{
+            alert("User already exists");
         }
     };
 
