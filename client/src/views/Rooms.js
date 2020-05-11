@@ -29,9 +29,9 @@ export class Rooms extends React.Component {
     updateEndDate = () => {
         const {startDate, endDate} = this.state;
         if (startDate > endDate){
-            this.state.endDate = this.state.startDate;
+            this.setState({endDate: startDate})
         }
-    }
+    };
 
     updateAvailableRooms = () => {
         this.roomsService.fetchAvailableRoomsForSelectedDatesAsync(new Date(this.state.startDate), new Date(this.state.endDate))
@@ -47,7 +47,7 @@ export class Rooms extends React.Component {
     updateStartDate = () => {
         const {startDate, endDate} = this.state;
         if (endDate < startDate){
-            this.state.startDate = this.state.endDate;
+            this.setState({startDate: endDate})
         }
     };
 
